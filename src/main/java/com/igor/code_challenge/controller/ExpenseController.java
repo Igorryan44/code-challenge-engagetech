@@ -19,7 +19,7 @@ public class ExpenseController {
     }
 
     @PostMapping
-    public ResponseEntity<ExpenseDto> createUser(ExpenseDto dto) {
+    public ResponseEntity<ExpenseDto> createUser(@RequestBody ExpenseDto dto) {
         return ResponseEntity.ok(expenseService.createExpense(dto));
     }
 
