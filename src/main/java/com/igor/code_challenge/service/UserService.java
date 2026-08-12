@@ -1,6 +1,7 @@
 package com.igor.code_challenge.service;
 
 import com.igor.code_challenge.dto.UserDto;
+import com.igor.code_challenge.model.User;
 import com.igor.code_challenge.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;

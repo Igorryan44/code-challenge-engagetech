@@ -1,5 +1,6 @@
 ### Create User
 POST http://localhost:8080/api/v1/user
+Content-Type: application/json
 
 {
     "name": "test",
@@ -16,21 +17,21 @@ GET http://localhost:8080/api/v1/user/list
 GET http://localhost:8080/api/v1/user/{{userId}}
 
 ### Create expense
-POST http://localhost:8080/api/v1/expense
+POST http://localhost:8080/api/v1/expense/{{userId}}
 Content-Type: application/json
 
 {
-  "date": "",
-  "reason": "",
-  "value": 0,
-  "vat": 0
+  "date": "2026-09-07",
+  "reason": "Test",
+  "value": 10,
+  "userId": 1
 }
 
 ### Delete expense
-DELETE http://localhost:8080/api/v1/expense/delete/{{expenseId}}
+DELETE http://localhost:8080/api/v1/expense/{{userId}}/delete/{{expenseId}}
 
 ### List expenses
-GET http://localhost:8080/api/v1/expense/list
+GET http://localhost:8080/api/v1/expense/{{userId}}/list
 
 ### Find expense by id
-GET http://localhost:8080/api/v1/expense/{{expenseId}}
+GET http://localhost:8080/api/v1/expense/{{userId}}/{{expenseId}}

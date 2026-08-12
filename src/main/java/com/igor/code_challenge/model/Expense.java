@@ -2,28 +2,31 @@ package com.igor.code_challenge.model;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "expense")
 public class Expense {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDateTime date;
+    private LocalDate date;
     private String reason;
     private double value;
+    @Column(updatable = false)
     private double vat;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Expense(Long id, LocalDateTime date, String reason, double value, double vat, User user) {
+    public Expense(Long id, LocalDate date, String reason, double value, double vat, User user) {
         this.id = id;
         this.date = date;
         this.reason = reason;
         this.value = value;
-        this.vat = vat;
+        this.vat = 20d;
         this.user = user;
     }
 
@@ -38,11 +41,11 @@ public class Expense {
         this.id = id;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

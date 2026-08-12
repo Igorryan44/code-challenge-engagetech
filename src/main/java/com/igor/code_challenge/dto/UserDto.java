@@ -13,11 +13,12 @@ public record UserDto(
         String name,
         @Valid
         @Email
-        String email
+        String email,
+        Long userId
 ) {
     public static UserDto toDto(User user) {
         if (user == null){return null;}
-        return new UserDto(user.getName(), user.getEmail());
+        return new UserDto(user.getName(), user.getEmail(), user.getId());
     }
 
     public static List<UserDto> toDto(List<User> users) {

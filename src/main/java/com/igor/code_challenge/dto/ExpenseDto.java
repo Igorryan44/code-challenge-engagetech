@@ -3,21 +3,20 @@ package com.igor.code_challenge.dto;
 import com.igor.code_challenge.model.Expense;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 public record ExpenseDto(
 
-        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-        LocalDateTime date,
+        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+        LocalDate date,
         String reason,
         Double value,
-        Double vat,
         Long userId
 ) {
     public static ExpenseDto toDto(Expense expense) {
         if (expense == null){return null;}
-        return new ExpenseDto(expense.getDate(), expense.getReason(), expense.getValue(), 20d, expense.getUser().getId());
+        return new ExpenseDto(expense.getDate(), expense.getReason(), expense.getValue(), expense.getUser().getId());
     }
 
     public static List<ExpenseDto> toDto(List<Expense> expenses) {
