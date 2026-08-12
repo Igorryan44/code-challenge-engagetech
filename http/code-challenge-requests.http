@@ -1,0 +1,36 @@
+### Create User
+POST http://localhost:8080/api/v1/user
+
+{
+    "name": "test",
+    "email": "test@test.com"
+}
+
+### Delete User
+DELETE http://localhost:8080/api/v1/user/delete/{{userId}}
+
+### List Users
+GET http://localhost:8080/api/v1/user/list
+
+### Find User by id
+GET http://localhost:8080/api/v1/user/{{userId}}
+
+### Create expense
+POST http://localhost:8080/api/v1/expense
+Content-Type: application/json
+
+{
+  "date": "",
+  "reason": "",
+  "value": 0,
+  "vat": 0
+}
+
+### Delete expense
+DELETE http://localhost:8080/api/v1/expense/delete/{{expenseId}}
+
+### List expenses
+GET http://localhost:8080/api/v1/expense/list
+
+### Find expense by id
+GET http://localhost:8080/api/v1/expense/{{expenseId}}

@@ -18,24 +18,24 @@ public class ExpenseController {
         this.expenseService = expenseService;
     }
 
-    @PostMapping
-    public ResponseEntity<ExpenseDto> createUser(@RequestBody ExpenseDto dto) {
-        return ResponseEntity.ok(expenseService.createExpense(dto));
+    @PostMapping("/{userId}")
+    public ResponseEntity<ExpenseDto> createUser(@RequestBody ExpenseDto dto, @PathVariable Long userId) {
+        return ResponseEntity.ok(expenseService.createExpense(dto, userId));
     }
 
-    @GetMapping("/list")
-    public ResponseEntity<List<ExpenseDto>> findAll() {
-        return ResponseEntity.ok(expenseService.findAll());
+    @GetMapping("/{userId}/list")
+    public ResponseEntity<List<ExpenseDto>> findAllByUser(@PathVariable Long userId) {
+        return ResponseEntity.ok(expenseService.findAllByUser(userId));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ExpenseDto> findById(@PathVariable Long id) {
-        return ResponseEntity.ok(expenseService.findById(id));
+    @GetMapping("/{userId}/{id}")
+    public ResponseEntity<ExpenseDto> findExpenseByIdAndUserId(@PathVariable Long id, @PathVariable Long userId) {
+        return ResponseEntity.ok(expenseService.findExpenseByIdAndUserId(id, userId));
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
-        expenseService.deleteById(id);
+    @DeleteMapping("/{userId}/delete/{id}")
+    public ResponseEntity<Void> deleteExpenseByIdAndUserId(@PathVariable Long id, @PathVariable Long userId) {
+        expenseService.deleteExpenseByIdAndUserId(id, userId);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 

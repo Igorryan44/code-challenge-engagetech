@@ -1,11 +1,18 @@
 package com.igor.code_challenge.dto;
 
 import com.igor.code_challenge.model.User;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;
 
 public record UserDto(
+
+        @NotBlank
         String name,
+        @Valid
+        @Email
         String email
 ) {
     public static UserDto toDto(User user) {
@@ -20,7 +27,7 @@ public record UserDto(
 
     public static User toEntity(UserDto dto) {
         if (dto == null) {return null;}
-        return new User(null, dto.name(), dto.email());
+        return new User(null, dto.name(), dto.email(), null);
     }
 
     public static List<User> toEntity(List<UserDto> dtos) {

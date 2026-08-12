@@ -1,8 +1,6 @@
 package com.igor.code_challenge.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
@@ -16,13 +14,17 @@ public class Expense {
     private String reason;
     private double value;
     private double vat;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    public Expense(Long id, LocalDateTime date, String reason, double value, double vat) {
+    public Expense(Long id, LocalDateTime date, String reason, double value, double vat, User user) {
         this.id = id;
         this.date = date;
         this.reason = reason;
         this.value = value;
         this.vat = vat;
+        this.user = user;
     }
 
     public Expense() {
@@ -66,5 +68,13 @@ public class Expense {
 
     public void setVat(double vat) {
         this.vat = vat;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
